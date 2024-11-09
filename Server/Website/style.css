@@ -1,0 +1,409 @@
+#download-button {
+    width: 224px;
+    height: 50px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    background: #040f16;
+    color: #f5f5f5;
+}
+#download-button:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s, background-color 0.6s;
+}
+
+#download-button .icon {
+    position: absolute;
+    height: 40px;
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+}
+
+#download-button .text {
+    transform: translateX(55px);
+}
+
+#download-button:hover .icon {
+    width: 224px;
+}
+
+#download-button:hover .text {
+    transition: all 0.5s;
+    opacity: 0;
+}
+
+#download-button:focus {
+    outline: none;
+}
+
+#download-button:active .icon {
+    transform: scale(0.85);
+}
+
+.cursor-disabled {
+    pointer-events: none;  /* Disables all mouse events */
+    cursor: not-allowed;    /* Changes the cursor to a "not allowed" symbol */
+    opacity: 0.5;          /* Optionally, you can reduce the opacity to indicate it's disabled */
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background: url('Website Background/webground.png') repeat;
+    background-size: 128% 128%;
+    background-attachment: fixed; /* Create a continuous scrolling effect */
+    animation: moveBackground 100s ease-in-out infinite alternate;
+    color: white;
+    transition: background-position 0.1s;
+}
+
+@keyframes moveBackground {
+    0% {
+        background-position: 100% 0;
+    }
+    25% {
+        background-position: 10% 50%;
+    }
+    50% {
+        background-position: 25% 75%;
+    }
+    75% {
+        background-position: 20% 100%;
+    }
+    100% {
+        background-position: 0 100%;
+    }
+}
+
+h1 {
+    font-family: cursive;
+    margin-top: 80px;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    font-variant: small-caps;
+    background: linear-gradient(to left, rgb(190, 0, 190), rgb(80, 158, 178)); /* Optional gradient background */
+    background-clip: text;
+    -webkit-background-clip: text; /* Clip the background to the text */
+    -webkit-text-fill-color: transparent; /* Make the text itself transparent */
+    text-shadow: 4px 4px 10px rgba(20, 20, 20, 0.7); /* Add shadow around the text */
+    display: inline-block;
+}
+
+.button-container {
+    display: inline-block;
+    text-align: center;
+    margin-top: -34px;
+}
+.button {
+    padding: 16px 28px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 12px;
+    display: inline-flex;
+    padding: 10px 20px;
+    margin: 10px;
+}
+.button::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+/* Glowing */
+.button::before {
+    content: "";
+    background: linear-gradient(
+        45deg,
+        red, rgb(0, 0, 255), purple, rgb(4, 124, 160),
+        rgb(0, 94, 218), magenta, rgb(212, 0, 106), #842
+    );
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    background-size: 600%;
+    z-index: -1;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    filter: blur(8px);
+    /* Color Animation */
+    animation: glowingBorder 28s linear infinite;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+    opacity: 1;
+}
+@keyframes glowingBorder {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+.button:hover {
+    color: #666666;
+    transform: scale(1.05);
+    transition: .8s ease;
+}
+
+.partner-panel {
+    background-color: rgba(68, 68, 68, 0.28);
+    width: 400px;
+    height: 100px;
+    margin-bottom: -84px;
+    margin-top: -20px;
+    border: dotted purple;
+    border-radius: 28px;
+    backdrop-filter: blur(2px);
+    animation: borderColorAnimation 10s linear infinite;
+}
+@keyframes borderColorAnimation {
+    0% {
+        border-color: rgb(0, 0, 255); /* Blue */
+    }
+    25% {
+        border-color: rgb(212, 0, 106);
+    }
+    50% {
+        border-color: rgb(128, 0, 128);
+    }
+    75% {
+        border-color: rgb(4, 124, 160);
+    }
+    100% {
+        border-color: rgb(0, 0, 255); /* Back to Blue */
+    }
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+#image-preview, #video {
+    max-width: 300px;
+    margin: 20px 0;
+}
+
+#image-preview {
+    border: 5px solid rgba(255, 255, 255, 0.5); /* Semi-transparent border */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Shadow to make it stand out */
+    background-color: transparent; /* Ensure no background color */
+    object-fit: contain;
+    margin-left: 860px;
+}
+
+#main-images-container {  /* Assuming this is the container div for your cropped image */
+    display: flex;
+    align-items: center;       /* Center vertically */
+    justify-content: center;   /* Center horizontally */
+    overflow: hidden;          /* Hide any overflow */
+}
+
+/* Hide the elements while retaining their layout space */
+#crop-area, #image-preview {
+    visibility: hidden;
+}
+
+canvas {
+    display: none;
+}
+
+#crop-container {
+    max-width: 100%;
+    max-height: 100%;
+    border: none; /* Removes any borders */
+    margin-left: 860px;
+    background-color: transparent; /* Transparent background */
+    display: absolute;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#crop-button {
+    display: flex;
+    margin-bottom: 7.2rem;
+    margin-left: 5rem;
+}
+
+#crop-container.hidden { /* When the photo is cropped */
+    display: none;
+}
+
+#crop-area {
+    max-width: 100%;
+    max-height: 100%;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    object-fit: contain; /* Ensures image fits without extra space */
+}
+
+#drop-area {
+    border: 2px dashed #ccc;
+    position: absolute;
+    padding: 20px;
+    text-align: center;
+    margin-top: 340px;
+    transition: border-color 0.3s ease;
+}
+
+#drop-area.drag-over {
+    border-color: #00bfa5; /* Change color to indicate it's ready for drop */
+}
+
+#program-icon {
+    background-color: transparent;
+}
+
+#result {
+    display: absolute;
+    max-width: 800px;
+    margin-bottom: -10rem;
+    text-align: right;
+    align-content: flex-start;
+    direction: rtl;
+}
+
+.program-icon {
+    display: flex;
+    margin: auto;
+    margin-top: -73px;
+}
+
+.text-container {
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 240px;
+}
+
+/* From Uiverse.io by sihamjardi */ 
+.remove-btn {
+    position: absolute;
+    border-radius: 6px;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 1px solid #333;
+    background-color: #333;
+    overflow: hidden;
+}
+
+.remove-btn,
+.button__icon,
+.button__text {
+    transition: all 0.3s;
+}
+
+.remove-btn .button__text {
+    transform: translateX(35px);
+    color: #fff;
+    font-weight: 600;
+}
+
+.remove-btn .button__icon {
+    position: absolute;
+    transform: translateX(109px);
+    height: 100%;
+    width: 39px;
+    background-color: #666666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-btn .svg {
+    width: 20px;
+}
+
+.remove-btn:hover {
+    background: #333;
+}
+
+.remove-btn:hover .button__text {
+    color: transparent;
+}
+
+.remove-btn:hover .button__icon {
+    width: 148px;
+    transform: translateX(-6px);
+}
+
+.remove-btn:active .button__icon {
+    background-color: #333;
+}
+
+.remove-btn:active {
+    border: 1px solid #333;
+}
+
+#img-preview-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+#delete-button {
+    margin-top: 25.6rem;
+}
+
+/* Overlay to cover the screen */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Ensure it’s on top */
+}
+
+/* Loading circle animation */
+.loading-circle {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+/* Animation keyframes for spin */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

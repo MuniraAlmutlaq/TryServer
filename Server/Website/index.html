@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALالـ | Image Text Processing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="style.css">
+    <link rel="main icon" href="Website Background/WebsiteLogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap">
+</head>
+<body>
+    <div class="partner-panel">
+        <img class= "program-icon" alt="" src="Website Background/Partner.png" style="width: 240px; height: 240px;">
+    </div>
+    <h1>Image Text <br>Processing</h1>
+
+    <div class="button-container">
+        <button class="button" onclick="captureFromLibrary()">Select from Device</button>
+        <button id="copy-button" class="button" onclick="copyText()">Copy Text</button>
+        <button class="button" onclick="startCamera()">Capture from Camera</button>
+    </div>
+
+    <input type="file" id="file-input" accept="image/*" capture="environment" onchange="uploadImage(event)" style="display: none;">
+    <button id="download-button" class="cursor-disabled" disabled>
+        <span class="icon">
+            <svg viewBox="20 0 100 100" width="40" height="40">
+                <!-- Arrow shaft -->
+                <rect x="45" y="20" width="10" height="60" fill="#f0f0f0" rx="5"></rect>
+                <!-- Arrow head -->
+                <polygon points="25,54 50,90 75,54" fill="#f0f0f0"></polygon>
+            </svg>
+        </span>
+        <span class="text">DOWNLOAD</span>
+    </button>
+    
+    <!-- Video element to display camera feed -->
+    <video id="video" autoplay></video>
+    <button id="snap-button" class="button" style="display:none;" onclick="snapPhoto()">Snap Photo</button>
+    
+    <!-- Canvas element to capture the photo -->
+    <canvas id="canvas"></canvas>
+    
+    <!-- Image preview for cropping -->
+    <div id="crop-container">
+        <img id="crop-area" class="cropArea" src="" alt="Crop Area">
+        <button id="crop-button" class="button" style="display:none;" onclick="cropImage()">Crop & Process</button>
+    </div>
+    
+    <div class="text-container">
+        <nav id="result" class="text-prev"></nav>
+    </div>
+
+    <div id="img-preview-container">
+        <img id="image-preview" src="" alt="Image Preview">
+    </div>
+
+    <!-- Drag and drop area -->
+    <div id="drop-area">
+        Drag & Drop an Image Here
+    </div>
+
+    <!-- Remove button -->
+    <button class="remove-btn" id="delete-button" type="button" style="display: none;" onclick="deleteImage()">
+        <span class="button__text">Delete</span>
+        <span class="button__icon">
+            <svg class="svg" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg">
+                <title></title>
+                <path d="M112,112l20,320c.95,18.49,14.4,32,32,32H348c17.67,0,30.87-13.51,32-32l20-320"
+                style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path>
+                <line style="stroke:#fff;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" x1="80" x2="432" y1="112" y2="112"></line>
+                <path d="M192,112V72h0a23.93,23.93,0,0,1,24-24h80a23.93,23.93,0,0,1,24,24h0v40"
+                style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path>
+                <line style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" x1="256" x2="256" y1="176" y2="400"></line>
+                <line style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" x1="184" x2="192" y1="176" y2="400"></line>
+                <line style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" x1="328" x2="320" y1="176" y2="400"></line>
+            </svg>
+        </span>
+    </button>
+
+    <!--Loading circle-->
+    <div id="loading-overlay" class="loading-overlay" style="display: none;">
+        <div class="loading-circle"></div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
